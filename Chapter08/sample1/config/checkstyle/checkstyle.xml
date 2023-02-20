@@ -8,6 +8,8 @@
           <module name="JavadocType">
                <property name="scope" value="public"/>
           </module>
-          <module name="ConstantName"/>
+          <module name="IllegalIdentifierName">
+                <property name="format" value="(?i)^(?!(record|yield|var|permits|sealed|open|transitive|_)$).+$"/>
+          </module>
      </module>
 </module>

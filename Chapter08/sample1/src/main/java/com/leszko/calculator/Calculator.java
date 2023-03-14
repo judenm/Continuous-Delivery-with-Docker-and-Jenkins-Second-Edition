@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class Calculator {
-        String umlNUMBER1 = "3";
+        String UMLNUMBER1 = "3";
         @Cacheable("sum")
         public int sum(int a, int b) {
                 return a + b;

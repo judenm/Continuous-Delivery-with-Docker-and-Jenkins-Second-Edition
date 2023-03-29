@@ -4,7 +4,7 @@ podTemplate(yaml: '''
     spec:
       containers:
       - name: centos
-        image: dlambrig/hello-kaniko:0.5
+        image: centos
         command:
         - sleep
         args:

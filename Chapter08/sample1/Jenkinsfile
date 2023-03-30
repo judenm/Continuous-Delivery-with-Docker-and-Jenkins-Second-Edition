@@ -26,7 +26,7 @@ podTemplate(yaml: '''
                    ./kubectl apply -f calculator.yaml -n staging
                    ./kubectl apply -f hazelcast.yaml -n staging
                    sleep 30
-                   ./kubectl get pods -n staging
+                   ./kubectl get pods -w -n staging
                    test $(curl -i calculator-service.staging.svc.cluster.local:8080/sum?a=3\\&b=4) -eq 7 && echo 'pass' || 'fail'
                    '''
                }

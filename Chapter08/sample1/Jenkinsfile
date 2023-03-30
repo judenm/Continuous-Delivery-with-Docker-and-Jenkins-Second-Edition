@@ -17,6 +17,9 @@ podTemplate(yaml: '''
                container('centos') {
                  stage('start calculator') {
                    sh '''
+                   dnf --disablerepo '*' --enablerepo=extras swap centos-linux-repos centos-stream-repos -y
+                   dnf distro-sync -y
+                   yum -y install bind-utils
                    cd Chapter08/sample1
                    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
                    chmod +x ./kubectl
@@ -24,8 +27,6 @@ podTemplate(yaml: '''
                    ./kubectl apply -f hazelcast.yaml -n staging
                    sleep 30
                    ./kubectl get pods -n staging
-                   dnf --disablerepo '*' --enablerepo=extras swap centos-linux-repos centos-stream-repos
-                   dnf distro-sync
                    test $(curl -i calculator-service.staging.svc.cluster.local:8080/sum?a=3\\&b=4) -eq 7 && echo 'pass' || 'fail'
                    '''
                }
